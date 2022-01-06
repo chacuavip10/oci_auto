@@ -39,11 +39,13 @@ bot_api = '*******'
 chat_id = '*******'
 ######################################################################################################################
 
-
 def telegram_notify(session, bot_api, chat_id, message):
     '''Notify via telegram'''
-    pass  # Disable telegram notification
-
+    try:
+        session.get(
+            f'https://api.telegram.org/bot{bot_api}/sendMessage?chat_id={chat_id}&text={message}')
+    except:
+        logging.info("Message fail to sent via telegram")
 
 #######################################################################################################################
 logging.info("#####################################################")
