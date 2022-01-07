@@ -166,6 +166,7 @@ while to_try:
         if e.status == 500:
             # Out of host capacity.
             message = f"{e.message} Retry in {wait_s_for_retry}s"
+            telegram_notify(session, bot_api, chat_id, message)
         else:
             message = f"{e} Retry in {wait_s_for_retry}s"
             telegram_notify(session, bot_api, chat_id, message)
@@ -179,5 +180,3 @@ while to_try:
     except KeyboardInterrupt:
         session.close()
         sys.exit()
-
-        
